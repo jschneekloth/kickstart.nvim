@@ -219,6 +219,17 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- Use spaces, 2-width indent for TS/JS (both normal and React variants)
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' },
+  callback = function()
+    vim.opt_local.expandtab = true
+    vim.opt_local.shiftwidth = 2
+    vim.opt_local.tabstop = 2
+    vim.opt_local.softtabstop = 2
+  end,
+})
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -787,6 +798,7 @@ require('lazy').setup({
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
+        -- NOTE: we've specified ts/js formats above via nvim_create_autocmd
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
