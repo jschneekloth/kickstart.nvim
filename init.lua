@@ -362,6 +362,14 @@ require('lazy').setup({
     },
   },
 
+  { -- Autopair plugin (e.g. automatically pair open/close parens)
+    'windwp/nvim-autopairs',
+    event = 'InsertEnter',
+    config = true,
+    -- use opts = {} for passing setup options
+    -- this is equivalent to setup({}) function
+  },
+
   -- NOTE: Plugins can specify dependencies.
   --
   -- The dependencies are proper plugin specifications as well - anything
